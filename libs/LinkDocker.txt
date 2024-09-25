@@ -1,0 +1,15 @@
+dotnet add package SixLabors.ImageSharp
+
+
+dotnet new classlib -n MyRevitPlugin
+   cd MyRevitPlugin
+
+.csproj
+<ItemGroup>
+    <Reference Include="RevitAPI">
+        <HintPath>C:\RevitSDK\RevitAPI.dll</HintPath>
+    </Reference>
+    <Reference Include="RevitAPIUI">
+        <HintPath>C:\RevitSDK\RevitAPIUI.dll</HintPath>
+    </Reference>
+</ItemGroup>
