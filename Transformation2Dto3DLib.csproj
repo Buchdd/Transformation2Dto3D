@@ -6,4 +6,24 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="libs\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Drawing.Common" Version="9.0.0-rc.1.24451.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="RevitAPI">
+      <HintPath>libs\RevitAPI.dll</HintPath>
+    </Reference>
+    <Reference Include="RevitAPIIFC">
+      <HintPath>libs\RevitAPIIFC.dll</HintPath>
+    </Reference>
+    <Reference Include="RevitAPIUI">
+      <HintPath>libs\RevitAPIUI.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

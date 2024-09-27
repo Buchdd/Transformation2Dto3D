@@ -1,46 +1,66 @@
 ﻿using Autodesk.Revit.UI;
 using Autodesk.Revit.DB;
+using Autodesk.Revit.Attributes;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Drawing;
+using Transformation2Dto3DLib.Family;
 
 namespace Transformation2Dto3DLib
 {
 
-public class SegmentTo3D : IExternalCommand
-{
-    public Result Execute(ExternalCommandData commandData, ElementSet elements)
+    public class SegmentTo3D// : IExternalCommand
     {
-        // Путь к сегментированному изображению
-        string segmentedImagePath = "path_to_your_segmented_image.png";
-        
-        // Загружаем изображение
-        Bitmap bitmap = new Bitmap(segmentedImagePath);
-        
-        // Создайте новую транзакцию
-        using (Transaction transaction = new Transaction(commandData.Application.ActiveUIDocument.Document, "Create 3D Model"))
+        public Result Execute(ExternalCommandData commandData, ElementSet elements)
         {
-            transaction.Start();
-
-            // Простой пример создания 3D-объекта на основе сегментации
-            for (int y = 0; y < bitmap.Height; y++)
+            // Путь к сегментированному изображению
+            string segmentedImagePath = "path_to_your_segmented_image.png";
+        
+            // Загружаем изображение
+            Bitmap bitmap = new Bitmap(segmentedImagePath);
+        
+            // Создайте новую транзакцию
+            using (Transaction transaction = new Transaction(commandData.Application.ActiveUIDocument.Document, "Create 3D Model"))
             {
-                for (int x = 0; x < bitmap.Width; x++)
+                transaction.Start();
+
+                // Простой пример создания 3D-объекта на основе сегментации
+                for (int y = 0; y < bitmap.Height; y++)
                 {
-                    System.Drawing.Color pixelColor = bitmap.GetPixel(x, y);
-                    if (pixelColor.R == 255) // Проверка белого пикселя
+                    for (int x = 0; x < bitmap.Width; x++)
                     {
-                        // Создание куба или другого 3D-объекта в Revit
-                        XYZ point = new XYZ(x, y, 0);
-                        // Далее добавьте код для создания объекта, например, стены или колонны
+                        System.Drawing.Color pixelColor = bitmap.GetPixel(x, y);
+                        if (pixelColor.R == 255) // Проверка белого пикселя
+                        {
+                            // Создание куба или другого 3D-объекта в Revit
+                            XYZ point = new XYZ(x, y, 0);
+                            // Далее добавьте код для создания объекта, например, стены или колонны
+                        }
                     }
                 }
+
+                transaction.Commit();
             }
 
-            transaction.Commit();
+            return Result.Succeeded;
         }
-
-        return Result.Succeeded;
     }
-}
+    [Transaction(TransactionMode.Manual)]
+    public class Command : IExternalCommand
+    {
+        public Result Execute(
+            ExternalCommandData commandData,
+            ref string message,
+            ElementSet elements)
+        {
+            UIApplication uiApp = commandData.Application;
+            UIDocument uiDoc = uiApp.ActiveUIDocument;
+
+            ModelBuilder builder = new ModelBuilder(uiDoc);
+            builder.BuildModel();
+
+            return Result.Succeeded;
+        }
+    }
 }
