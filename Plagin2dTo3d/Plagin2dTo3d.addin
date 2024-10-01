@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<RevitAddIns>
+    <AddIn Type="Command">
+        <Name>Transformation2DTo3D</Name>
+        <Assembly>Plagin2dTo3d\Transformation2Dto3DLib.dll</Assembly>
+        <AddInId>2a2adfb4-b560-44ba-8c3b-249640ac288d</AddInId>
+        <FullClassName>Transformation2Dto3DLib<FullClassName>
+        <VendorId>YourVendorId</VendorId>
+        <VendorDescription>YourVendorDescription</VendorDescription>
+    </AddIn>
+ </RevitAddIns>
