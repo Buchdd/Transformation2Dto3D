@@ -1,23 +1,12 @@
-import ezdxf
-import matplotlib.pyplot as plt
+import aspose.cad as cad
+#import aspose.cad.image as cad_image
 
 def dwg_to_png(dwg_file, png_file):
-    doc = ezdxf.readfile(dwg_file)
-    msp = doc.modelspace()
-    
-    # Создаем изображение на основе векторной графики
-    fig = plt.figure()
-    ax = fig.add_subplot(111)
-    
-    for entity in msp:
-        # Можно добавить фильтрацию по типу объектов (линии, круги и т.д.)
-        if entity.dxftype() == 'LINE':
-            ax.plot([entity.dxf.start.x, entity.dxf.end.x], 
-                    [entity.dxf.start.y, entity.dxf.end.y], color='black')
+    image = cad.Image.load(dwg_file)
+    rasterizationOptions = cad.imageoptions.CadRasterizationOptions()
+    rasterizationOptions.layouts = ["Model"]
 
-    plt.axis('equal')
-    plt.axis('off')
-    plt.savefig(png_file, bbox_inches='tight')
-    plt.close()
+    pdfOptions = cad.imageoptions.PdfOptions()
+    pdfOptions.vector_rasterization_options = rasterizationOptions
 
-dwg_to_png('example.dwg', 'example.png')
+    image.save(png_file, pdfOptions)

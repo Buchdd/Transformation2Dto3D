@@ -4,6 +4,10 @@ dotnet add package SixLabors.ImageSharp
 dotnet new classlib -n MyRevitPlugin
    cd MyRevitPlugin
 
+pip install aspose-cad
+//pip install aspose-imaging-python-net
+pip install --upgrade convertapi
+
 .csproj
 <ItemGroup>
     <Reference Include="RevitAPI">
