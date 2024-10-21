@@ -91,3 +91,6 @@ https://www.kaggle.com/code/oluwatobiojekanmi/carla-image-semantic-segmentation-
 https://etd.lib.metu.edu.tr/upload/12624598/index.pdf (AUTO-CONVERSION FROM 2D DRAWING TO 3D MODEL WITH DEEP LEARNING)
 Также есть полностью готовая нейронка Theia, которая сейчас находится в бете (недоделанная). Может на основе чертежа сгенерировать полноценную 3д модель. По сути выполняет большую часть работы. На следующей неделе буду тестировать данные нейронки
 https://youtu.be/8yXVtbcKGho (пример её работы)
+
+21.10.2024
+Как и предполагалось Thiea beta всё ещё нельзя использовать. U-net точно с открытым кодом, а на счёт модификации ещё так и не узнал
