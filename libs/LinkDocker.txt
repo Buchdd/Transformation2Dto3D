@@ -7,6 +7,12 @@ dotnet new classlib -n MyRevitPlugin
 pip install aspose-cad
 //pip install aspose-imaging-python-net
 pip install --upgrade convertapi
+pip install pywin32
+pip install paddleseg
+pip install keras
+pip install ternausnet
+pip install pyautocad 
+pip install paddlepaddle paddleseg
 
 .csproj
 <ItemGroup>

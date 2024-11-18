@@ -6,6 +6,8 @@ using System.Diagnostics;
 using System.IO;
 using System.Drawing;
 using Transformation2Dto3DLib.Family;
+using System;
+using System.Runtime.InteropServices;
 
 namespace Transformation2Dto3DLib
 {
@@ -19,7 +21,15 @@ namespace Transformation2Dto3DLib
         
             // Загружаем изображение
             Bitmap bitmap = new Bitmap(segmentedImagePath);
-        
+
+            // Создайте экземпляр Python класса
+           Type converterType = Type.GetTypeFromProgID("YourPythonNamespace.Converter");
+           dynamic converter = Activator.CreateInstance(converterType);
+
+           // Вызываем метод
+           converter.convert_dwg_to_jpg(@"C:\path\to\input.dwg", @"C:\path\to\output.jpg");
+
+
             // Создайте новую транзакцию
             using (Transaction transaction = new Transaction(commandData.Application.ActiveUIDocument.Document, "Create 3D Model"))
             {
